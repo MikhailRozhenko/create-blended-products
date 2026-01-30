@@ -1,0 +1,69 @@
+import { refs } from './refs';
+
+export function renderCategories(data) {
+  const markup = data
+    .map(
+      el => `<li class="categories__item">
+   <button class="categories__btn" type="button">${el}</button>
+ </li>
+`
+    )
+    .join('');
+  refs.categoriesList.innerHTML = markup;
+}
+
+export function renderProducts(product) {
+  const markup = product
+    .map(
+      product => `<li class="products__item" data-id="${product.id}">
+    <img class="products__image" src="${product.images[0]}" alt="${product.description}"/>
+    <p class="products__title">${product.title}</p>
+    <p class="products__brand"><span class="products__brand--bold">Brand: ${product.brand}</span></p>
+    <p class="products__category">Category: ${product.category}</p>
+    <p class="products__price">Price: ${product.price}$</p>
+ </li>
+`
+    )
+    .join('');
+  refs.productsList.innerHTML = markup;
+}
+
+export function renderEndpoints(endpoint) {
+  const markup = endpoint
+    .map(
+      endpoint => `<li class="products__item" data-id="">
+    <img class="products__image" src="${endpoint.images[0]}" alt="${endpoint.description}"/>
+    <p class="products__title">${endpoint.title}</p>
+    <p class="products__brand"><span class="products__brand--bold">Brand: ${endpoint.brand}</span></p>
+    <p class="products__category">Category: ${endpoint.category}</p>
+    <p class="products__price">Price: ${endpoint.price}$</p>
+ </li>
+`
+    )
+    .join('');
+  refs.productsList.innerHTML = markup;
+}
+
+export function renderDivModalItem(id) {
+  const markup = id
+    .map(
+      id => `<img class="modal-product__img" src="${id.images[0]}" alt="${id.description}" />
+      <div class="modal-product__content">
+        <p class="modal-product__title">${id.title}</p>
+        <ul class="modal-product__tags">${id.tags}</ul>
+        <p class="modal-product__description">${id.description}</p>
+        <p class="modal-product__shipping-information">Shipping: ${
+          id.shippingInformation
+        }</p>
+        <p class="modal-product__return-policy">Return Policy: ${
+          id.returnPolicy
+        }</p>
+        <p class="modal-product__price">Price: ${id.price} $</p>
+        <button class="modal-product__buy-btn" type="button">Buy</button>
+      </div>
+
+`
+    )
+    .join('');
+  refs.productsList.innerHTML = markup;
+}
