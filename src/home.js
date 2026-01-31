@@ -2,7 +2,7 @@
 
 import { getCategories, getProducts } from './js/handlers';
 import { renderBtnListCategories } from './js/helpers';
-import { fetchItemEndPoint } from './js/products-api';
+import { closeDivModal, openClickDivModalOpen } from './js/modal';
 
 getCategories();
 
@@ -10,4 +10,6 @@ getProducts();
 
 renderBtnListCategories();
 
-fetchItemEndPoint().then(data => console.log(data));
+openClickDivModalOpen();
+
+closeDivModal();

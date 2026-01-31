@@ -31,7 +31,7 @@ export function renderProducts(product) {
 export function renderEndpoints(endpoint) {
   const markup = endpoint
     .map(
-      endpoint => `<li class="products__item" data-id="">
+      endpoint => `<li class="products__item" data-id="${endpoint.id}">
     <img class="products__image" src="${endpoint.images[0]}" alt="${endpoint.description}"/>
     <p class="products__title">${endpoint.title}</p>
     <p class="products__brand"><span class="products__brand--bold">Brand: ${endpoint.brand}</span></p>
@@ -45,25 +45,22 @@ export function renderEndpoints(endpoint) {
 }
 
 export function renderDivModalItem(id) {
-  const markup = id
-    .map(
-      id => `<img class="modal-product__img" src="${id.images[0]}" alt="${id.description}" />
-      <div class="modal-product__content">
-        <p class="modal-product__title">${id.title}</p>
-        <ul class="modal-product__tags">${id.tags}</ul>
-        <p class="modal-product__description">${id.description}</p>
-        <p class="modal-product__shipping-information">Shipping: ${
-          id.shippingInformation
-        }</p>
-        <p class="modal-product__return-policy">Return Policy: ${
-          id.returnPolicy
-        }</p>
-        <p class="modal-product__price">Price: ${id.price} $</p>
-        <button class="modal-product__buy-btn" type="button">Buy</button>
-      </div>
+  const tagsMarkup = Array.isArray(id.tags)
+    ? id.tags.map(tag => `<li class="modal-product__tag">${tag}</li>`).join('')
+    : '';
 
-`
-    )
-    .join('');
-  refs.productsList.innerHTML = markup;
+  const markup = `
+    <img class="modal-product__img" src="${id.images?.[0] || ''}" alt="${id.description}" />
+    <div class="modal-product__content">
+      <p class="modal-product__title">${id.title}</p>
+      <ul class="modal-product__tags">${tagsMarkup}</ul>
+      <p class="modal-product__description">${id.description}</p>
+      <p class="modal-product__shipping-information">Shipping: In stock</p>
+      <p class="modal-product__return-policy">Return Policy: 30 days</p>
+      <p class="modal-product__price">Price: ${id.price} $</p>
+      <button class="modal-product__buy-btn" type="button">Buy</button>
+    </div>
+  `;
+
+  refs.divModalProduct.innerHTML = markup;
 }

@@ -1,9 +1,15 @@
 import iziToast from 'izitoast';
 import { activeFirstBtn } from './helpers';
-import { fetchCategories, fetchEndpoint, fetchProducts } from './products-api';
+import {
+  fetchCategories,
+  fetchEndpoint,
+  fetchItemEndPoint,
+  fetchProducts,
+} from './products-api';
 import { refs } from './refs';
 import {
   renderCategories,
+  renderDivModalItem,
   renderEndpoints,
   renderProducts,
 } from './render-function';
@@ -40,6 +46,16 @@ export async function getEndpoints(btnTextcontent) {
     }
     refs.divNotFound.classList.remove('not-found--visible');
     renderEndpoints(data.products);
+  } catch (error) {
+    console.log(error);
+    iziToast.error({ message: 'Try again later!' });
+  }
+}
+
+export async function getDivModalProductId(id) {
+  try {
+    const data = await fetchItemEndPoint(id);
+    renderDivModalItem(data);
   } catch (error) {
     console.log(error);
     iziToast.error({ message: 'Try again later!' });

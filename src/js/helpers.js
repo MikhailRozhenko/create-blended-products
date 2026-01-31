@@ -31,14 +31,3 @@ export function renderBtnListCategories() {
     event.target.classList.add('categories__btn--active');
   });
 }
-
-export function renderItemDivModalOpenClick() {
-  refs.productsList.addEventListener('click', event => {
-    const productItem = event.target.closest('.products__item');
-    if (!productItem) {
-      return;
-    }
-
-    const productId = productItem.dataset.id;
-  });
-}

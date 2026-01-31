@@ -41,14 +41,7 @@ export async function fetchEndpoint(btnTextcontent) {
 }
 
 export async function fetchItemEndPoint(id) {
-  const params = {
-    limit: 12,
-    skip: (currentPage - 1) * 12,
-  };
-
-  const { data } = await axios.get(`/products/1`, {
-    params,
-  });
+  const { data } = await axios.get(`/products/${id}`);
 
   return data;
 }
