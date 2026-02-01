@@ -1,4 +1,9 @@
-import { getEndpoints, getProducts } from './handlers';
+import {
+  getEndpoints,
+  getInputsearchValue,
+  getProducts,
+  showError,
+} from './handlers';
 import { refs } from './refs';
 
 export function activeFirstBtn() {
@@ -29,5 +34,26 @@ export function renderBtnListCategories() {
     });
 
     event.target.classList.add('categories__btn--active');
+  });
+}
+
+export function renderInputValueProductsItem() {
+  refs.formHeader.addEventListener('submit', event => {
+    event.preventDefault();
+
+    const InputValue = event.target.elements.searchValue.value.trim();
+    if (InputValue === '') {
+      showError('Пожалуйста, заполните поле формы для поиска');
+      return;
+    }
+    getInputsearchValue(InputValue);
+  });
+}
+
+export function clearInputSearchForm() {
+  refs.buttonClearInputForm.addEventListener('click', event => {
+    event.preventDefault();
+    refs.formHeader.elements.searchValue.value = '';
+    getProducts();
   });
 }

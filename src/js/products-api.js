@@ -45,3 +45,17 @@ export async function fetchItemEndPoint(id) {
 
   return data;
 }
+
+export async function fetchItemInputValue(value) {
+  const params = {
+    q: value,
+    limit: 12,
+    skip: (currentPage - 1) * 12,
+  };
+
+  const { data } = await axios.get(`/products/search`, {
+    params,
+  });
+
+  return data;
+}

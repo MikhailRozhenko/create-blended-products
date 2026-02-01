@@ -5,4 +5,6 @@ export const refs = {
   divModal: document.querySelector('.modal'),
   divModalProduct: document.querySelector('.modal-product'),
   btnCloseDivModal: document.querySelector('.modal__close-btn'),
+  formHeader: document.querySelector('.search-form'),
+  buttonClearInputForm: document.querySelector('.search-form__btn-clear'),
 };

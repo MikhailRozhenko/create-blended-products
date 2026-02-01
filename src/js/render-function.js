@@ -34,7 +34,7 @@ export function renderEndpoints(endpoint) {
       endpoint => `<li class="products__item" data-id="${endpoint.id}">
     <img class="products__image" src="${endpoint.images[0]}" alt="${endpoint.description}"/>
     <p class="products__title">${endpoint.title}</p>
-    <p class="products__brand"><span class="products__brand--bold">Brand: ${endpoint.brand}</span></p>
+    <p class="products__brand"><span class="products__brand--bold">Brand: ${endpoint.brand || 'No results'}</span></p>
     <p class="products__category">Category: ${endpoint.category}</p>
     <p class="products__price">Price: ${endpoint.price}$</p>
  </li>
@@ -63,4 +63,32 @@ export function renderDivModalItem(id) {
   `;
 
   refs.divModalProduct.innerHTML = markup;
+}
+
+export function renderInputItemValueProduct(value) {
+  const markup = value.products
+    .map(
+      value => `<li class="products__item" data-id="${value.id}">
+        <img
+          class="products__image"
+          src="${value.thumbnail}"
+          alt="${value.description}"
+        />
+        <p class="products__title">${value.title}</p>
+        <p class="products__brand">
+          <span class="products__brand--bold">
+            Brand: ${value.brand}
+          </span>
+        </p>
+        <p class="products__category">
+          Category: ${value.category}
+        </p>
+        <p class="products__price">
+          Price: ${value.price}$
+        </p>
+      </li>`
+    )
+    .join('');
+
+  refs.productsList.innerHTML = markup;
 }
