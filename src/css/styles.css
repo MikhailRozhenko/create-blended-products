@@ -14,9 +14,6 @@
 @import url('./not-found.css');
 @import url('./helpers.css');
 
-/* =========================
-   LIGHT THEME
-========================= */
 body.theme-light {
   background-color: #f6f7f9;
   color: #1f2933;
@@ -26,19 +23,14 @@ body.theme-light .header {
   background: linear-gradient(135deg, #ffcf4d, #ffb703);
 }
 
-/* логотип */
 body.theme-light .logo__icon {
   fill: #ff7a00;
 }
 
-/* навигация */
 body.theme-light .nav__link {
   color: #1f2933;
 }
 
-/* =========================
-   COUNTERS (FIXED)
-========================= */
 .nav__count-cart,
 .nav__count-wishlist {
   display: inline-flex;
@@ -53,19 +45,15 @@ body.theme-light .nav__link {
   font-weight: 600;
   border-radius: 999px;
 
-  user-select: none; /* 🔥 убрали эффект выделения */
+  user-select: none;
 }
 
-/* light counters */
 body.theme-light .nav__count-cart,
 body.theme-light .nav__count-wishlist {
   background-color: #1f2933;
   color: #ffffff;
 }
 
-/* =========================
-   DARK THEME
-========================= */
 body.theme-dark {
   background-color: #0f172a;
   color: #e5e7eb;
@@ -80,21 +68,16 @@ body.theme-dark .logo__icon {
   fill: #ff9f1c;
 }
 
-/* навигация */
 body.theme-dark .nav__link {
   color: #f9fafb;
 }
 
-/* dark counters */
 body.theme-dark .nav__count-cart,
 body.theme-dark .nav__count-wishlist {
   background-color: #ff9f1c;
   color: #020617;
 }
 
-/* =========================
-   SEARCH FORM
-========================= */
 .search-form__input {
   background-color: rgba(255, 255, 255, 0.95);
   color: #1f2933;
@@ -116,7 +99,6 @@ body.theme-dark .search-form__input::placeholder {
   color: #cbd5e1;
 }
 
-/* search button */
 .search-form__btn {
   background-color: #ff7a00;
   color: #fff;
@@ -170,13 +152,11 @@ body.theme-dark .theme-toggle-btn {
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-/* 🔥 hover dark — БЕЛАЯ ЗАЛИВКА */
 body.theme-dark .theme-toggle-btn:hover {
   background-color: rgba(255, 255, 255, 0.95);
   transform: scale(1.05);
 }
 
-/* icon inside toggle */
 .theme-toggle-btn svg {
   fill: #1f2933;
 }
@@ -185,9 +165,6 @@ body.theme-dark .theme-toggle-btn svg {
   fill: #020617;
 }
 
-/* =========================
-   SMOOTH TRANSITION
-========================= */
 body,
 .header,
 .nav__link,
@@ -198,6 +175,6 @@ body,
 .nav__count-wishlist {
   transition:
     background-color 0.3s ease,
-    color 0.3s ease,
-    fill 0.3s ease;
+    color 0.4s ease,
+    fill 0.4s ease;
 }
