@@ -5,8 +5,9 @@
     <link rel="icon" type="image/svg+xml" href="/create-blended-products/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cart</title>
-    <script type="module" crossorigin src="/create-blended-products/assets/styles-BKtNv1d4.js"></script>
-    <link rel="stylesheet" crossorigin href="/create-blended-products/assets/styles-47YwU91u.css">
+    <script type="module" crossorigin src="/create-blended-products/cart.js"></script>
+    <link rel="modulepreload" crossorigin href="/create-blended-products/assets/storage-C5mwrqgF.js">
+    <link rel="stylesheet" crossorigin href="/create-blended-products/assets/storage-47YwU91u.css">
   </head>
   <body>
     <header class="header">
@@ -42,14 +43,14 @@
         <li class="nav__item">
           <a class="nav__link nav__link--active" href="./cart.html">
             Cart
-            <span class="nav__count" data-cart-count>0</span>
+            <span class="nav__count-cart" data-cart-count>0</span>
             <!-- Динамічне число -->
           </a>
         </li>
         <li class="nav__item">
           <a class="nav__link {=$highlight-wishlist}" href="./wishlist.html">
             Wishlist
-            <span class="nav__count" data-wishlist-count>0</span>
+            <span class="nav__count-wishlist" data-wishlist-count>0</span>
             <!-- Динамічне число -->
           </a>
         </li>
