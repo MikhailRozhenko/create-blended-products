@@ -11,4 +11,7 @@ export const refs = {
   spanCart: document.querySelector('.nav__count-cart'),
   spanWishlist: document.querySelector('.nav__count-wishlist'),
   buttonCart: document.querySelector('.modal-product__btn--cart'),
+  spanCartItems: document.querySelector('.cart-summary__value'),
+  spanCartTotalPrice: document.querySelector('.cart-summary__price'),
+  buttonBuyProducts: document.querySelector('.cart-summary__btn'),
 };

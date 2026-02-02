@@ -1,6 +1,27 @@
+import iziToast from 'izitoast';
 import { getDivModalProductId } from './handlers';
 import { refs } from './refs';
 import { getFromLS, saveToLS } from './storage';
+
+function showSingleProductPurchaseToast(message) {
+  iziToast.show({
+    title: '🛍 Покупка успешна',
+    message: message,
+    position: 'topRight',
+    timeout: 4000,
+    progressBar: true,
+    close: true,
+    pauseOnHover: true,
+    animateInside: true,
+    transitionIn: 'fadeInDown',
+    transitionOut: 'fadeOutUp',
+
+    backgroundColor: '#FFD54F', // жёлтый фон
+    titleColor: '#1a1a1a',
+    messageColor: '#1a1a1a',
+    progressBarColor: '#FFB300',
+  });
+}
 
 function onBackdropClick(event) {
   if (event.target === event.currentTarget) {
@@ -25,6 +46,13 @@ export function openClickDivModalOpen() {
     getDivModalProductId(productId);
 
     refs.divModal.classList.add('modal--is-open');
+
+    refs.divModalProduct.addEventListener('click', event => {
+      if (!event.target.closest('.modal-product__buy-btn')) return;
+      showSingleProductPurchaseToast(
+        'Поздравляем🔥, вы успешно приобрели этот товар✅'
+      );
+    });
 
     refs.divModal.addEventListener('click', onBackdropClick);
     refs.btnCloseDivModal.addEventListener('click', closeDivModal);
@@ -72,6 +100,13 @@ export function addToWishList() {
     if (isInWishlist) {
       const updatedWishlist = lsData.filter(id => id !== productId);
       saveToLS('wishlist', updatedWishlist);
+      const liProductsItem = document.querySelector(
+        `.products__item[data-id="${productId}"`
+      );
+
+      if (liProductsItem) {
+        liProductsItem.remove();
+      }
 
       refs.buttonWishList.textContent = 'Add to Wishlist';
       const lengthWishlist = updatedWishlist.length;
@@ -101,6 +136,13 @@ export function addToCart() {
     if (isInCart) {
       const updatedCart = lsDataCart.filter(id => id !== productId);
       saveToLS('cart', updatedCart);
+      const liProductsItem = document.querySelector(
+        `.products__item[data-id="${productId}"`
+      );
+
+      if (liProductsItem) {
+        liProductsItem.remove();
+      }
 
       refs.buttonCart.textContent = 'Add to Cart';
       const lengthCart = updatedCart.length;
