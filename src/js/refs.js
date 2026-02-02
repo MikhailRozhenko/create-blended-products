@@ -14,4 +14,6 @@ export const refs = {
   spanCartItems: document.querySelector('.cart-summary__value'),
   spanCartTotalPrice: document.querySelector('.cart-summary__price'),
   buttonBuyProducts: document.querySelector('.cart-summary__btn'),
+  buttonThemeSwitch: document.querySelector('.theme-toggle-btn'),
+  body: document.querySelector('body'),
 };

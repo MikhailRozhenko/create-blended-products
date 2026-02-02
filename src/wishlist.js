@@ -10,6 +10,7 @@ import { fetchItemEndPoint } from './js/products-api';
 import { refs } from './js/refs';
 import { renderEndpoints } from './js/render-function';
 import { getFromLS } from './js/storage';
+import { applySavedTheme, themeSwitch } from './js/theme-switcher';
 
 document.addEventListener('DOMContentLoaded', () => {
   const getWishlist = getFromLS('wishlist');
@@ -53,3 +54,7 @@ addToWishList();
 addToCart();
 
 closeDivModal();
+
+themeSwitch();
+
+applySavedTheme();

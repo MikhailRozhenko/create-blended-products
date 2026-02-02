@@ -14,6 +14,7 @@ import {
 } from './js/modal';
 import { refs } from './js/refs';
 import { getFromLS } from './js/storage';
+import { applySavedTheme, themeSwitch } from './js/theme-switcher';
 
 document.addEventListener('DOMContentLoaded', () => {
   const getWishlist = getFromLS('wishlist');
@@ -52,3 +53,7 @@ clearInputSearchForm();
 addToWishList();
 
 addToCart();
+
+themeSwitch();
+
+applySavedTheme();

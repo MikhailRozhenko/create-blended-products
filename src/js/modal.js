@@ -136,6 +136,8 @@ export function addToCart() {
     if (isInCart) {
       const updatedCart = lsDataCart.filter(id => id !== productId);
       saveToLS('cart', updatedCart);
+      document.dispatchEvent(new CustomEvent('cart-updated'));
+
       const liProductsItem = document.querySelector(
         `.products__item[data-id="${productId}"`
       );
@@ -150,6 +152,7 @@ export function addToCart() {
     } else {
       lsDataCart.push(productId);
       saveToLS('cart', lsDataCart);
+      document.dispatchEvent(new CustomEvent('cart-updated'));
 
       refs.buttonCart.textContent = 'Remove from Cart';
       const lsDatalengthCart = lsDataCart.length;

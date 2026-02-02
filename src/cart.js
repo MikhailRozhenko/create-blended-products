@@ -11,6 +11,7 @@ import { fetchItemEndPoint } from './js/products-api';
 import { refs } from './js/refs';
 import { renderEndpoints } from './js/render-function';
 import { getFromLS } from './js/storage';
+import { applySavedTheme, themeSwitch } from './js/theme-switcher';
 
 export function showSuccessPurchaseToast(totalPrice) {
   iziToast.show({
@@ -34,6 +35,7 @@ export function showSuccessPurchaseToast(totalPrice) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  updateCartUI();
   const getWishlist = getFromLS('wishlist');
   let countWishlist;
   if (!getWishlist) {
@@ -53,12 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
   refs.spanCart.textContent = countWishlistCart;
 });
 
-document.addEventListener('DOMContentLoaded', addToCartItem);
-
-async function addToCartItem() {
+export async function updateCartUI() {
   const cart = getFromLS('cart');
   if (!cart || cart.length === 0) {
     refs.productsList.innerHTML = '';
+    refs.spanCartItems.textContent = 0;
+    refs.spanCartTotalPrice.textContent = '0$';
+
     return;
   }
   const promises = cart.map(id => fetchItemEndPoint(id));
@@ -77,8 +80,6 @@ async function addToCartItem() {
   });
 }
 
-addToCartItem();
-
 addToWishList();
 
 openClickDivModalOpen();
@@ -86,3 +87,11 @@ openClickDivModalOpen();
 addToCart();
 
 closeDivModal();
+
+document.addEventListener('cart-updated', () => {
+  updateCartUI();
+});
+
+themeSwitch();
+
+applySavedTheme();
