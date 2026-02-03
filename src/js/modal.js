@@ -46,13 +46,13 @@ export function openClickDivModalOpen() {
     getDivModalProductId(productId);
 
     refs.divModal.classList.add('modal--is-open');
+  });
 
-    refs.divModalProduct.addEventListener('click', event => {
-      if (!event.target.closest('.modal-product__buy-btn')) return;
-      showSingleProductPurchaseToast(
-        'Поздравляем🔥, вы успешно приобрели этот товар✅'
-      );
-    });
+  refs.divModalProduct.addEventListener('click', event => {
+    if (!event.target.closest('.modal-product__buy-btn')) return;
+    showSingleProductPurchaseToast(
+      'Поздравляем🔥, вы успешно приобрели этот товар✅'
+    );
 
     refs.divModal.addEventListener('click', onBackdropClick);
     refs.btnCloseDivModal.addEventListener('click', closeDivModal);
