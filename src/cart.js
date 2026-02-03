@@ -13,7 +13,9 @@ import { renderEndpoints } from './js/render-function';
 import { getFromLS } from './js/storage';
 import { applySavedTheme, themeSwitch } from './js/theme-switcher';
 
-export function showSuccessPurchaseToast(totalPrice) {
+let sumTotal = 0;
+
+function showSuccessPurchaseToast(totalPrice) {
   iziToast.show({
     title: '🛒 Покупка оформлена',
     message: `Поздравляем! Вы приобрели товаров на сумму <b>${totalPrice}$</b>.<br>🚚 Доставка будет в течение <b>2 дней</b>.`,
@@ -55,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   refs.spanCart.textContent = countWishlistCart;
 });
 
-export async function updateCartUI() {
+async function updateCartUI() {
   const cart = getFromLS('cart');
   if (!cart || cart.length === 0) {
     refs.productsList.innerHTML = '';
@@ -72,13 +74,13 @@ export async function updateCartUI() {
   const sum = products.reduce((accumulator, currentValue) => {
     return accumulator + currentValue.price;
   }, 0);
-  const sumTotal = Number(sum.toFixed(2));
+  sumTotal = Number(sum.toFixed(2));
   refs.spanCartTotalPrice.textContent = `${sumTotal}$`;
-
-  refs.buttonBuyProducts.addEventListener('click', () => {
-    showSuccessPurchaseToast(`${sumTotal}`);
-  });
 }
+
+refs.buttonBuyProducts.addEventListener('click', () => {
+  showSuccessPurchaseToast(`${sumTotal}`);
+});
 
 addToWishList();
 

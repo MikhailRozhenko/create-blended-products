@@ -16,4 +16,5 @@ export const refs = {
   buttonBuyProducts: document.querySelector('.cart-summary__btn'),
   buttonThemeSwitch: document.querySelector('.theme-toggle-btn'),
   body: document.querySelector('body'),
+  sidebar: document.querySelector('.sidebars'),
 };
