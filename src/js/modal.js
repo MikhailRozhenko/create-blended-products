@@ -23,13 +23,6 @@ function showSingleProductPurchaseToast(message) {
   });
 }
 
-refs.divModalProduct.addEventListener('click', event => {
-  if (!event.target.closest('.modal-product__buy-btn')) return;
-  showSingleProductPurchaseToast(
-    'Поздравляем🔥, вы успешно приобрели этот товар✅'
-  );
-});
-
 function onBackdropClick(event) {
   if (event.target === event.currentTarget) {
     closeDivModal();
@@ -101,7 +94,7 @@ export function addToWishList() {
       const updatedWishlist = lsData.filter(id => id !== productId);
       saveToLS('wishlist', updatedWishlist);
       const liProductsItem = document.querySelector(
-        `.products__item[data-id="${productId}"`
+        `.products__item[data-id="${productId}"]`
       );
 
       if (liProductsItem) {
@@ -168,3 +161,10 @@ export function closeDivModal() {
   refs.divModal.removeEventListener('click', onBackdropClick);
   document.removeEventListener('keydown', onEscPress);
 }
+
+refs.divModal.addEventListener('click', event => {
+  if (!event.target.closest('.modal-product__buy-btn')) return;
+  showSingleProductPurchaseToast(
+    'Поздравляем🔥, вы успешно приобрели этот товар✅'
+  );
+});
