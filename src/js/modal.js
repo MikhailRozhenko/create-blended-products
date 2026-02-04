@@ -93,6 +93,7 @@ export function addToWishList() {
     if (isInWishlist) {
       const updatedWishlist = lsData.filter(id => id !== productId);
       saveToLS('wishlist', updatedWishlist);
+      document.dispatchEvent(new CustomEvent('wishlist-updated'));
       const liProductsItem = document.querySelector(
         `.products__item[data-id="${productId}"]`
       );
@@ -107,6 +108,7 @@ export function addToWishList() {
     } else {
       lsData.push(productId);
       saveToLS('wishlist', lsData);
+      document.dispatchEvent(new CustomEvent('wishlist-updated'));
 
       refs.buttonWishList.textContent = 'Remove from Wishlist';
       const lsDatalength = lsData.length;

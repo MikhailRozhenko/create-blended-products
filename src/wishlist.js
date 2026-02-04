@@ -1,6 +1,10 @@
 //Логіка сторінки Wishlist
 
 import {
+  clearInputSearchForm,
+  renderInputValueProductsItem,
+} from './js/helpers';
+import {
   addToCart,
   addToWishList,
   closeDivModal,
@@ -45,6 +49,21 @@ function addToCartWishList() {
   });
 }
 
+async function updateCartWishlist() {
+  const Wishlist = getFromLS('wishlist');
+  if (!Wishlist || Wishlist.length === 0) {
+    refs.productsList.innerHTML = '';
+    return;
+  }
+  const promises = Wishlist.map(id => fetchItemEndPoint(id));
+  const products = await Promise.all(promises);
+  renderEndpoints(products);
+}
+
+document.addEventListener('wishlist-updated', () => {
+  updateCartWishlist();
+});
+
 addToCartWishList();
 
 openClickDivModalOpen();
@@ -58,3 +77,7 @@ closeDivModal();
 themeSwitch();
 
 applySavedTheme();
+
+renderInputValueProductsItem();
+
+clearInputSearchForm();

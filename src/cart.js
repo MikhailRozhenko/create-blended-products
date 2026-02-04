@@ -2,6 +2,10 @@
 
 import iziToast from 'izitoast';
 import {
+  clearInputSearchForm,
+  renderInputValueProductsItem,
+} from './js/helpers';
+import {
   addToCart,
   addToWishList,
   closeDivModal,
@@ -97,3 +101,7 @@ document.addEventListener('cart-updated', () => {
 themeSwitch();
 
 applySavedTheme();
+
+renderInputValueProductsItem();
+
+clearInputSearchForm();
