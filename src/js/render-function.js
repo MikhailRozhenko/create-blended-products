@@ -12,7 +12,7 @@ export function renderCategories(data) {
   refs.categoriesList.innerHTML = markup;
 }
 
-export function renderProducts(product) {
+export function renderProducts(product, append = false) {
   const markup = product
     .map(
       product => `<li class="products__item" data-id="${product.id}">
@@ -25,7 +25,12 @@ export function renderProducts(product) {
 `
     )
     .join('');
-  refs.productsList.innerHTML = markup;
+
+  if (append) {
+    refs.productsList.insertAdjacentHTML('beforeend', markup);
+  } else {
+    refs.productsList.innerHTML = markup;
+  }
 }
 
 export function renderEndpoints(endpoint) {

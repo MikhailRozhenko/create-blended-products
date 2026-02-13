@@ -1,7 +1,7 @@
 // API ендпоінти:
 
 import axios from 'axios';
-import { BASE_URL, currentPage, END_POINTS } from './constants';
+import { BASE_URL, END_POINTS } from './constants';
 axios.defaults.baseURL = BASE_URL;
 
 // https://dummyjson.com/docs/products - документація бекенду, розділ продукти
@@ -11,15 +11,17 @@ axios.defaults.baseURL = BASE_URL;
 // https://dummyjson.com/products/category-list - отримати список категорій продуктів
 // https://dummyjson.com/products/category/smartphones - отримати продукти по категорії
 
+const limit = 12;
+
 export async function fetchCategories() {
   const { data } = await axios(`${END_POINTS.CATEGORIES}`);
   return data;
 }
 
-export async function fetchProducts() {
+export async function fetchProducts(page) {
   const params = {
-    limit: 12,
-    skip: (currentPage - 1) * 12,
+    limit: limit,
+    skip: (page - 1) * limit,
   };
 
   const { data } = await axios.get(`${END_POINTS.PRODUCTS}`, { params });
@@ -27,10 +29,10 @@ export async function fetchProducts() {
   return data;
 }
 
-export async function fetchEndpoint(btnTextcontent) {
+export async function fetchEndpoint(btnTextcontent, page) {
   const params = {
-    limit: 12,
-    skip: (currentPage - 1) * 12,
+    limit: limit,
+    skip: (page - 1) * limit,
   };
 
   const { data } = await axios.get(`/products/category/${btnTextcontent}`, {
@@ -46,11 +48,12 @@ export async function fetchItemEndPoint(id) {
   return data;
 }
 
-export async function fetchItemInputValue(value) {
+export async function fetchItemInputValue(value, page) {
   const params = {
+    limit: limit,
     q: value,
-    limit: 12,
-    skip: (currentPage - 1) * 12,
+
+    skip: (page - 1) * limit,
   };
 
   const { data } = await axios.get(`/products/search`, {

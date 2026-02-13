@@ -38,11 +38,16 @@ export async function getCategories() {
   }
 }
 
-export async function getProducts(data) {
+export async function getProducts(page, append = false) {
   try {
-    const data = await fetchProducts();
+    const data = await fetchProducts(page);
+    refs.loadMoreButton.style.display = 'block';
+
     refs.divNotFound.classList.remove('not-found--visible');
-    renderProducts(data.products);
+    renderProducts(data.products, append);
+    if (data.skip + data.limit >= data.total) {
+      refs.loadMoreButton.style.display = 'none';
+    }
   } catch (error) {
     console.log(error);
     showError('try again later!');

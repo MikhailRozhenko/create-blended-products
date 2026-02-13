@@ -12,9 +12,13 @@ import {
   closeDivModal,
   openClickDivModalOpen,
 } from './js/modal';
+import { fetchProducts } from './js/products-api';
 import { refs } from './js/refs';
 import { getFromLS } from './js/storage';
 import { applySavedTheme, themeSwitch } from './js/theme-switcher';
+
+let currentPage = 1;
+const limit = 12;
 
 document.addEventListener('DOMContentLoaded', () => {
   const getWishlist = getFromLS('wishlist');
@@ -38,7 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 getCategories();
 
-getProducts();
+getProducts(currentPage);
+currentPage++;
 
 renderBtnListCategories();
 
@@ -57,3 +62,8 @@ addToCart();
 themeSwitch();
 
 applySavedTheme();
+
+refs.loadMoreButton.addEventListener('click', () => {
+  getProducts(currentPage, true);
+  currentPage++;
+});
