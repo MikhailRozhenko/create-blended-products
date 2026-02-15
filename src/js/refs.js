@@ -17,4 +17,6 @@ export const refs = {
   buttonThemeSwitch: document.querySelector('.theme-toggle-btn'),
   body: document.querySelector('body'),
   loadMoreButton: document.querySelector('.load-more-btn'),
+  loader: document.querySelector('.loader'),
+  scrollTopBtn: document.querySelector('.scroll-top-btn'),
 };

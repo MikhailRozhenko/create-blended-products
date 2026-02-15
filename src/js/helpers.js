@@ -6,6 +6,8 @@ import {
 } from './handlers';
 import { refs } from './refs';
 
+let currentPage = 1;
+
 export function activeFirstBtn() {
   const firstBtn = document.querySelector('.categories__btn');
   if (firstBtn) {
@@ -22,9 +24,10 @@ export function renderBtnListCategories() {
     const btnTextcontent = event.target.textContent;
 
     if (btnTextcontent === 'All') {
-      getProducts();
+      getProducts(currentPage);
+      currentPage++;
     } else {
-      getEndpoints(btnTextcontent);
+      getEndpoints(btnTextcontent, 1);
     }
 
     const allBtnCategories = document.querySelectorAll('.categories__btn');

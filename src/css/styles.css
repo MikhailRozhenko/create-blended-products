@@ -178,3 +178,53 @@ body,
     color 0.4s ease,
     fill 0.4s ease;
 }
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 16px auto;
+}
+.is-hidden {
+  display: none;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.scroll-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #ff6b0a;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
+  z-index: 100;
+}
+
+.scroll-top-btn--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-top-btn:hover {
+  background-color: #e55a00;
+}

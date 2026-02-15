@@ -29,17 +29,23 @@ export function showError(message) {
 
 export async function getCategories() {
   try {
+    refs.loader.classList.remove('is-hidden');
+
     const data = await fetchCategories();
     renderCategories(['All', ...data]);
     activeFirstBtn();
   } catch (error) {
     console.log(error);
     showError('try again later!');
+  } finally {
+    refs.loader.classList.add('is-hidden');
   }
 }
 
 export async function getProducts(page, append = false) {
   try {
+    refs.loader.classList.remove('is-hidden');
+
     const data = await fetchProducts(page);
     refs.loadMoreButton.style.display = 'block';
 
@@ -51,12 +57,17 @@ export async function getProducts(page, append = false) {
   } catch (error) {
     console.log(error);
     showError('try again later!');
+  } finally {
+    refs.loader.classList.add('is-hidden');
   }
 }
 
-export async function getEndpoints(btnTextcontent) {
+export async function getEndpoints(btnTextcontent, page) {
   try {
-    const data = await fetchEndpoint(btnTextcontent);
+    refs.loadMoreButton.style.display = 'none';
+    refs.loader.classList.remove('is-hidden');
+
+    const data = await fetchEndpoint(btnTextcontent, page);
     if (data.products.length === 0) {
       refs.divNotFound.classList.add('not-found--visible');
       refs.productsList.innerHTML = '';
@@ -67,21 +78,30 @@ export async function getEndpoints(btnTextcontent) {
   } catch (error) {
     console.log(error);
     showError('try again later!');
+  } finally {
+    refs.loader.classList.add('is-hidden');
   }
 }
 
 export async function getDivModalProductId(id) {
   try {
+    refs.loader.classList.remove('is-hidden');
+
     const data = await fetchItemEndPoint(id);
     renderDivModalItem(data);
   } catch (error) {
     console.log(error);
     showError('try again later!');
+  } finally {
+    refs.loader.classList.add('is-hidden');
   }
 }
 
 export async function getInputsearchValue(value) {
   try {
+    refs.loadMoreButton.style.display = 'none';
+    refs.loader.classList.remove('is-hidden');
+
     const data = await fetchItemInputValue(value);
 
     if (!data || data.products.length === 0) {
@@ -96,5 +116,7 @@ export async function getInputsearchValue(value) {
   } catch (error) {
     console.log(error);
     showError('К сожалению, по вашему запросу не было найдено результатов');
+  } finally {
+    refs.loader.classList.add('is-hidden');
   }
 }

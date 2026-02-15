@@ -12,13 +12,26 @@ import {
   closeDivModal,
   openClickDivModalOpen,
 } from './js/modal';
-import { fetchProducts } from './js/products-api';
 import { refs } from './js/refs';
 import { getFromLS } from './js/storage';
 import { applySavedTheme, themeSwitch } from './js/theme-switcher';
 
 let currentPage = 1;
-const limit = 12;
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) {
+    refs.scrollTopBtn.classList.add('scroll-top-btn--visible');
+  } else {
+    refs.scrollTopBtn.classList.remove('scroll-top-btn--visible');
+  }
+});
+
+refs.scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const getWishlist = getFromLS('wishlist');
