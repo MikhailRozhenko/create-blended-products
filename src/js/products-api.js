@@ -18,7 +18,7 @@ export async function fetchCategories() {
   return data;
 }
 
-export async function fetchProducts(page) {
+export async function fetchProducts(page = 1) {
   const params = {
     limit: limit,
     skip: (page - 1) * limit,
@@ -48,7 +48,7 @@ export async function fetchItemEndPoint(id) {
   return data;
 }
 
-export async function fetchItemInputValue(value, page) {
+export async function fetchItemInputValue(value, page = 1) {
   const params = {
     limit: limit,
     q: value,
